@@ -10,6 +10,7 @@ podTemplate(containers: [
         def appName = "pipelinewise"
         def revision
         def message
+        def branch
         stage('Checkout') {
             def scmVars = checkout([
                 $class: 'GitSCM',
@@ -31,6 +32,7 @@ podTemplate(containers: [
             appFullName = "${appName}:${scmVars.GIT_COMMIT}"
             revision = "${scmVars.GIT_COMMIT}"
             message = sh(returnStdout: true, script: "git log --oneline -1 ${revision}")
+            branch = "${scmVars.GIT_BRANCH}"
         }
 
 
@@ -44,7 +46,7 @@ podTemplate(containers: [
             }
         }
 
-        if (env.BRANCH_NAME == 'master') {
+        if (branch == 'master') {
             stage('Push Docker Image') {
                 container('docker') {
                     docker.withRegistry('https://107126629234.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:49feb1c9-1719-4520-aa17-67695b347b0e') {
