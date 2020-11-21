@@ -1,1 +1,1 @@
-tap-google-sheets==1.0.4
+git+git://github.com/teguhn/tap-google-sheets@master#egg=tap-google-sheets
