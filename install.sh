@@ -62,7 +62,7 @@ make_virtualenv() {
     python3 -m pip install --upgrade pip setuptools
 
     if [ -f "requirements.txt" ]; then
-        python3 -m pip install --upgrade -r requirements.txt
+        python3 -m pip install --upgrade -r requirements.txt --use-feature=2020-resolver
     fi
     if [ -f "setup.py" ]; then
         PIP_ARGS=
@@ -187,6 +187,7 @@ EXTRA_CONNECTORS=(
     tap-zuora
     tap-google-analytics
     tap-shopify
+    tap-google-sheets
 )
 
 # Install only the default connectors if --connectors argument not passed

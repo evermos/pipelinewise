@@ -1,0 +1,1 @@
+git+git://github.com/teguhn/tap-google-sheets@master#egg=tap-google-sheets
